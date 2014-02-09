@@ -6,33 +6,24 @@
 
 module.exports = function(mongoose){
 
-
     models = require('../models/person')(mongoose);
 
-    function createPersonCallback(err){
-        if(err){
-            return console.log(err);
-        }
-        return console.log('Person was created');
-    }
-
-    function createPerson(){
-        var person = new models.Person({
-            FirstName: "Liutauras",
-            LastName: "Medziunas"
+    function getPersons(callback){
+        models.Person.find({}, function(err, persons){
+            callback(persons);
         });
-        person.save(createPersonCallback);
     }
 
-    function getData(a, b){
-        if(mongoose === undefined){
-            return 0;
-        }
-        createPerson();
-        return a + b;
+    function createPerson(firstName, lastName, callback){
+        var person = new models.Person({
+            FirstName: firstName,
+            LastName: lastName
+        });
+        person.save(callback);
     }
 
     return {
-        getData: getData
-    };
+        getPersons: getPersons,
+        createPerson: createPerson
+    }
 };

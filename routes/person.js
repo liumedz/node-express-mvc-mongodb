@@ -6,21 +6,21 @@
 module.exports = function(servies){
 
     index = function(req, res){
-        servies.getPeople(function(people){
-            res.render("people/index", {title: 'people', people: people});
+        servies.getPersons(function(persons){
+            res.render("person/index", {title: 'person', persons: persons});
         });
     };
 
     create = function(req, res){
-        res.render("people/create", {title: 'Create people'});
+        res.render("person/create", {title: 'Create person'});
     };
 
     edit = function(req, res){
-        res.render("people/edit", {title: 'Edit people'});
+        res.render("person/edit", {title: 'Edit person'});
     };
 
     del = function(req, res){
-        res.render("people/delete", {title: 'Delete people'});
+        res.render("person/delete", {title: 'Delete person'});
     };
 
     return{
