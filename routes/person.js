@@ -1,24 +1,26 @@
 
 /*
- * GET person.
+ * GET people.
  */
 
-module.exports = function(){
+module.exports = function(servies){
 
     index = function(req, res){
-        res.render("person/index", {title: 'Persons'});
+        servies.getPeople(function(people){
+            res.render("people/index", {title: 'people', people: people});
+        });
     };
 
     create = function(req, res){
-        res.render("person/index", {title: 'Create Person'});
+        res.render("people/create", {title: 'Create people'});
     };
 
     edit = function(req, res){
-        res.render("person/index", {title: 'Edit Person'});
+        res.render("people/edit", {title: 'Edit people'});
     };
 
     del = function(req, res){
-        res.render("person/index", {title: 'Delete Person'});
+        res.render("people/delete", {title: 'Delete people'});
     };
 
     return{

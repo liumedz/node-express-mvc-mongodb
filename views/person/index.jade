@@ -1,5 +1,14 @@
 extends ../layout
-
 block content
-h1= title
-p Welcome to #{title}
+    h1= title
+    div
+        table
+            thead
+                tr
+                    th First Name
+                    th Last Name
+            tbody
+                each person in Persons
+                    tr
+                        td= person.FirstName
+                        td= person.LastName

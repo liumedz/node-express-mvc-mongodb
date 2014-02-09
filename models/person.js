@@ -1,13 +1,13 @@
 module.exports = function(mongoose){
 
-    var PersonSchema = new mongoose.Schema({
+    var PeopleSchema = new mongoose.Schema({
         FirstName:  { type: String},
         LastName: { type: String}
     });
 
-    Person = mongoose.model('Person', PersonSchema);
+    People = mongoose.model('People', PeopleSchema);
 
     return {
-        Person: Person
+        People: People
     }
 };
