@@ -1,0 +1,18 @@
+{
+  "name": "node-express-mvc-mongodb",
+  "version": "0.0.0",
+  "description": "Example Application Node,Express, MongoDb, MVC",
+  "authors": [
+    "Liutauras Medziunas liutauras.medziunas@gmail.com"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/liumedz",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
