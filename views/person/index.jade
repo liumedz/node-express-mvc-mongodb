@@ -1,14 +1,21 @@
 extends ../layout
 block content
     h1= title
+    a(href="/person/create") Create
     div
-        table
+        table(class="table")
             thead
                 tr
                     th First Name
                     th Last Name
+                    th
+                    th
             tbody
                 each person in persons
                     tr
                         td= person.FirstName
                         td= person.LastName
+                        td
+                            a(href="/person/edit/#{person._id}") Edit
+                        td
+                            a(href="/person/delete/#{person._id}") Delete

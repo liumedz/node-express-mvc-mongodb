@@ -1,12 +1,10 @@
 
 /*
- * Bussiness services.
+ * Business services.
  */
 
 
-module.exports = function(mongoose){
-
-    models = require('../models/person')(mongoose);
+module.exports = function(models){
 
     function getPersons(callback){
         models.Person.find({}, function(err, persons){
@@ -14,16 +12,39 @@ module.exports = function(mongoose){
         });
     }
 
-    function createPerson(firstName, lastName, callback){
-        var person = new models.Person({
-            FirstName: firstName,
-            LastName: lastName
+    function getPerson(id, callback){
+        models.Person.findOne({_id: id}, function(err, person){
+            callback(person);
         });
-        person.save(callback);
+    }
+
+    function deletePerson(id, callback){
+        models.Person.remove({_id: id}, function(err){
+            callback(err);
+        });
+    }
+
+    function editPerson(id, person, callback){
+        models.Person.findOne({_id: id}, function(err, personModel){
+            personModel.FirstName = person.FirstName;
+            personModel.LastName = person.LastName;
+            personModel.save(callback);
+        });
+    }
+
+    function createPerson(person, callback){
+        var personModel = new models.Person({
+            FirstName: person.FirstName,
+            LastName: person.LastName
+        });
+        personModel.save(callback);
     }
 
     return {
         getPersons: getPersons,
-        createPerson: createPerson
+        getPerson: getPerson,
+        deletePerson: deletePerson,
+        createPerson: createPerson,
+        editPerson: editPerson
     }
 };

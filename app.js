@@ -31,17 +31,24 @@ app.configure(function(){
 
 mongoose.connect(app.get('db-path'));
 
-var indexRoutes = require('./routes/index')();
-var servies = require('./services/data-service')(mongoose);
+//var indexRoutes = require('./routes/index')();
+var models = require('./models/person')(mongoose);
+var servies = require('./services/data-service')(models);
 var personRoutes = require('./routes/person')(servies);
-var api = require("./api/data")(app, servies);
 
-app.get('/', indexRoutes.index);
+app.get('/', personRoutes.index);
 
 app.get('/person/index', personRoutes.index);
+
 app.get('/person/create', personRoutes.create);
-app.get('/person/edit', personRoutes.edit);
-app.get('/person/delete', personRoutes.delete);
+app.post('/person/create', personRoutes.create);
+
+app.get('/person/edit/:id', personRoutes.edit);
+app.put('/person/edit/:id', personRoutes.edit);
+
+app.get('/person/delete/:id', personRoutes.delete);
+app.delete('/person/delete/:id', personRoutes.delete);
+
 
 app.listen(3000, function(){
     console.log('Express server listening on port ' + app.get('port'));
