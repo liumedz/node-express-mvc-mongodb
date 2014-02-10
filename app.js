@@ -33,7 +33,7 @@ mongoose.connect(app.get('db-path'));
 
 //var indexRoutes = require('./routes/index')();
 var models = require('./models/person')(mongoose);
-var servies = require('./services/data-service')(models);
+var servies = require('./services/service')(models);
 var personRoutes = require('./routes/person')(servies);
 
 app.get('/', personRoutes.index);
